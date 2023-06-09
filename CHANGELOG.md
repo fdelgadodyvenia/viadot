@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] -2023-06-08
+### Added
+- Added `BigQuery` source to the library.
+- Added `Supermetrics` source to the library.
+- Added `SalesForce` source to the library.
+- Added `Unit Tests BigQuery`  tests.
+- Added `Unit Tests BigSupermetricsQuery` tests.
+- Added `Unit Tests SalesForce` tests.
+
 ## [Unreleased]
 ### Added
 - Fixed `Databricks.create_table_from_pandas()` failing to overwrite a table in some cases even with `replace="True"`.
