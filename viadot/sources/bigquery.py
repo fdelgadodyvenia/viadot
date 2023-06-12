@@ -51,7 +51,12 @@ class BigQuery(Source):
         **kwargs,
     ):
         credentials = credentials or get_source_credentials(config_key)
-
+        if not (credentials.get("type") and credentials.get("project_id") and credentials.get("private_key_id") and
+                credentials.get("private_key") and credentials.get("client_email") and credentials.get("client_id") and
+                credentials.get("auth_uri") and credentials.get("token_uri") and credentials.get("auth_provider_x509_cert_url") and credentials.get("client_x509_cert_url")):
+            raise CredentialError(
+                "'type', 'project_id', 'private_key_id', 'private_key', 'client_email', 'client_id', 'auth_uri', 'token_uri', 'auth_provider_x509_cert_url', 'client_x509_cert_url' credentials are required."
+            )
         validated_creds = dict(BigQueryCredentials(**credentials))
         super().__init__(*args, credentials=validated_creds, **kwargs)
 
@@ -180,4 +185,8 @@ class BigQuery(Source):
                 FROM {dataset_name}.{table_name}
                 """
         df = self.get_df(query)
+        
+        if df.empty:
+            self._handle_if_empty("fail")
+        
         return df

@@ -49,7 +49,12 @@ class Supermetrics(Source):
         **kwargs,
     ):
         credentials = credentials or get_source_credentials(config_key)
-
+            
+        if not (credentials.get("user") and credentials.get("api_key")):
+            raise CredentialError(
+                "'user' and 'api_key' credentials are required."
+            )
+                        
         validated_creds = dict(
             SupermetricsCredentials(**credentials)
         )  # validate the credentials schema
@@ -162,7 +167,7 @@ class Supermetrics(Source):
         else:
             return Supermetrics._get_col_names_other(response)
 
-    def to_df(self, if_empty: str = "warn") -> pd.DataFrame:
+    def to_df(self, if_empty: str = "fail") -> pd.DataFrame:
         """
         Description:
             Download data into a pandas DataFrame.
@@ -195,6 +200,8 @@ class Supermetrics(Source):
 
         if df.empty:
             self._handle_if_empty(if_empty)
+    
+        
 
         return df
 

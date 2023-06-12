@@ -44,6 +44,11 @@ class SalesForce(Source):
         **kwargs,
     ):
         credentials = credentials or get_source_credentials(config_key)
+        if not (credentials.get("username") and credentials.get("password") and credentials.get("token")):
+            raise CredentialError(
+                "'username', 'password' and 'token' credentials are required."
+            )
+            
         validated_creds = dict(SalesForceCredentials(**credentials))
         super().__init__(*args, credentials=validated_creds, **kwargs)
 
@@ -259,5 +264,8 @@ class SalesForce(Source):
             pd.DataFrame: Selected rows from Salesforce.
         """
         records = self.download(query=query, table=table, columns=columns)
-
-        return pd.DataFrame(records)
+        df = pd.DataFrame(records)
+        if df.empty:
+            self._handle_if_empty("fail")
+            
+        return df
