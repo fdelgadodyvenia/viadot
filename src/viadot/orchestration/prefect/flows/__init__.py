@@ -29,3 +29,4 @@ from .sharepoint_to_s3 import sharepoint_to_s3  # noqa: F401
 from .sql_server_to_minio import sql_server_to_minio  # noqa: F401
 from .transform import transform  # noqa: F401
 from .transform_and_catalog import transform_and_catalog  # noqa: F401
+from .supermetrics_to_adls import supermetrics_to_adls

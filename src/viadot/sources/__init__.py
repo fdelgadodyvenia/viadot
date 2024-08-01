@@ -10,6 +10,7 @@ from .sharepoint import Sharepoint
 from .sql_server import SQLServer
 from .trino_source import Trino
 from .duckdb import DuckDB
+from .supermetrics import Supermetrics
 
 __all__ = [
     "CloudForCustomers",
