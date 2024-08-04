@@ -344,10 +344,6 @@ class Genesys(Source):
         for entity in entities:
             ids.append(entity.get("id"))
             urls.append(entity.get("downloadUrl"))
-            # entity.get("filter").get("queueIds", [-1])[0],
-            # entity.get("filter").get("mediaTypes", [-1])[0],
-            # entity.get("viewType"),
-            # entity.get("interval"),
             status.append(entity.get("status"))
 
         if "FAILED" in status:

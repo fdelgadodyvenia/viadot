@@ -46,6 +46,7 @@ Classes:
 """  # noqa: D412
 
 import json
+import logging
 from datetime import date, timedelta
 from io import StringIO
 from typing import Any, Dict, List, Literal, Optional
@@ -60,6 +61,8 @@ from viadot.config import get_source_credentials
 from viadot.exceptions import APIError, CredentialError
 from viadot.sources.base import Source
 from viadot.utils import add_viadot_metadata_columns, handle_api_response
+
+logging.basicConfig(level=logging.INFO)
 
 
 class MindfulCredentials(BaseModel):
@@ -182,7 +185,7 @@ class Mindful(Source):
             reference_date = date.today()
             date_interval = [reference_date - timedelta(days=1), reference_date]
 
-            print(
+            logging.info(
                 (
                     f"{Fore.YELLOW}WARNING{Style.RESET_ALL}: "
                     + "No `date_interval` parameter was defined, or was erroneously "
@@ -210,17 +213,17 @@ class Mindful(Source):
         )
 
         if response.status_code == 200:
-            print(f"Succesfully downloaded '{endpoint}' data from mindful API.")
+            logging.info(f"Succesfully downloaded '{endpoint}' data from mindful API.")
             self.data = StringIO(response.content.decode("utf-8"))
         elif response.status_code == 204 and not response.content.decode():
-            print(
+            logging.info(
                 f"{Fore.YELLOW}WARNING{Style.RESET_ALL}: "
                 + f"Thera are not '{endpoint}' data to download from"
                 + f" {date_interval[0]} to {date_interval[1]}."
             )
             self.data = json.dumps({})
         else:
-            print(
+            logging.info(
                 f"{Fore.RED}ERROR{Style.RESET_ALL}: "
                 + f"Failed to downloaded '{endpoint}' data. - {response.content}"
             )
@@ -251,6 +254,6 @@ class Mindful(Source):
                 message="The response does not contain any data.",
             )
         else:
-            print("Successfully downloaded data from the Mindful API.")
+            logging.info("Successfully downloaded data from the Mindful API.")
 
         return data_frame

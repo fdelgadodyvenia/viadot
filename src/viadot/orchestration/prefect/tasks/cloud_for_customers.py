@@ -47,7 +47,8 @@ def cloud_for_customers_to_df(  # noqa: PLR0913, PLR0917
         pd.Dataframe: The pandas `DataFrame` containing data from the file.
     """
     if not (credentials_secret or config_key or credentials):
-        msg = "Either `credentials_secret`, `config_key`, or `credentials` has to be specified and not empty."
+        msg = "Either `credentials_secret`, `config_key`, or `credentials` \
+            has to be specified and not empty."
         raise ValueError(msg)
 
     credentials = credentials or get_credentials(credentials_secret)
@@ -59,5 +60,4 @@ def cloud_for_customers_to_df(  # noqa: PLR0913, PLR0917
         credentials=credentials,
         config_key=config_key,
     )
-    # fields=fields, dtype=dtype, tests=tests, 
     return c4c.to_df(**kwargs)

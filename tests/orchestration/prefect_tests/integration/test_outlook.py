@@ -13,7 +13,7 @@ if "__main__" == __name__:
         mailbox_name=mail_box,
         start_date="2023-04-12",
         end_date="2023-04-13",
-        adls_azure_key_vault_secret="app-azure-cr-datalakegen2",
+        adls_azure_key_vault_secret="app-azure-cr-datalakegen2-dev",
         adls_path=f"raw/dyvenia_sandbox/genesys/{mail_box.split('@')[0].replace('.', '_').replace('-', '_')}.csv",
         adls_path_overwrite=True,
     )

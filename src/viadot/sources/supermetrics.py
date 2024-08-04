@@ -73,7 +73,7 @@ class Supermetrics(Source):
         **kwargs,
     ):
         credentials = credentials or get_source_credentials(config_key)
-        
+
         if not (credentials.get("user") and credentials.get("api_key")):
             raise CredentialError("'user' and 'api_key' credentials are required.")
 

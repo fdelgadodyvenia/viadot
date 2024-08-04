@@ -44,6 +44,7 @@ Classes:
 """  # noqa: D412
 
 import json
+import logging
 import re
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Tuple
@@ -56,6 +57,8 @@ from viadot.config import get_source_credentials
 from viadot.exceptions import APIError, CredentialError
 from viadot.sources.base import Source
 from viadot.utils import add_viadot_metadata_columns, handle_api_response
+
+logging.basicConfig(level=logging.INFO)
 
 
 class HubspotCredentials(BaseModel):
@@ -278,7 +281,7 @@ class Hubspot(Source):
         if response.status_code == 200:
             return response.json()
 
-        print(
+        logging.info(
             f"{Fore.RED}ERROR{Style.RESET_ALL}: "
             + f"Failed to load response content. - {response.content}"
         )
@@ -416,6 +419,6 @@ class Hubspot(Source):
                 message="The response does not contain any data.",
             )
         else:
-            print("Successfully downloaded data from the Mindful API.")
+            logging.info("Successfully downloaded data from the Mindful API.")
 
         return data_frame

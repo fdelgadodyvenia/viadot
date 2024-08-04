@@ -27,7 +27,7 @@ def supermetrics_to_adls(  # noqa: PLR0913, PLR0917
     """Download records from Supermetrics and upload them to Azure Data Lake.
 
     Args:
-        query_params (dict(str, optional): Params to compose the query. 
+        query_params (dict(str, optional): Params to compose the query.
         adls_path (str): The destination path.
         overwrite (bool, optional): Whether to overwrite files in the lake. Defaults to
             False.
@@ -47,7 +47,6 @@ def supermetrics_to_adls(  # noqa: PLR0913, PLR0917
         config_key=supermetrics_config_key,
         **kwargs,
     )
-
     return df_to_adls(
         df=df,
         path=adls_path,

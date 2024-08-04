@@ -13,6 +13,7 @@ Classes:
 """
 
 import re
+import logging
 from copy import deepcopy
 from typing import Any, Dict, List, Optional, Literal
 from urllib.parse import urljoin
@@ -25,6 +26,8 @@ from viadot.config import get_source_credentials
 from viadot.exceptions import CredentialError
 from viadot.sources.base import Source
 from viadot.utils import handle_api_response, validate
+
+logging.basicConfig(level=logging.INFO)
 
 
 class CloudForCustomersCredentials(BaseModel):
@@ -325,11 +328,11 @@ class CloudForCustomers(Source):
         """
         # Your implementation here
         if if_empty == "warn":
-            print("Warning: DataFrame is empty.")
+            logging.info("Warning: DataFrame is empty.")
         elif if_empty == "skip":
-            print("Skipping due to empty DataFrame.")
+            logging.info("Skipping due to empty DataFrame.")
         elif if_empty == "fail":
-            print("Failing due to empty DataFrame.")
+            logging.info("Failing due to empty DataFrame.")
         else:
             raise ValueError("Invalid value for if_empty parameter.")
 

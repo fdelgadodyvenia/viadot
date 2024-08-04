@@ -15,6 +15,6 @@ if "__main__" == __name__:
         endpoint="responses",
         date_interval=date_interval,
         adls_path="raw/dyvenia_sandbox/mindful",
-        adls_azure_key_vault_secret="app-azure-cr-datalakegen2",
+        adls_azure_key_vault_secret="app-azure-cr-datalakegen2-dev",
         adls_path_overwrite=True,
     )

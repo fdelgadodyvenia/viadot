@@ -16,7 +16,7 @@ if "__main__" == __name__:
             "f4ef329a-d903-41f4-ad4d-876a753adf3c",
         ],
         drop_duplicates=True,
-        adls_azure_key_vault_secret="app-azure-cr-datalakegen2",
+        adls_azure_key_vault_secret="app-azure-cr-datalakegen2-dev",
         adls_path="raw/dyvenia_sandbox/genesys/genesys_agents.csv",
         adls_path_overwrite=True,
     )

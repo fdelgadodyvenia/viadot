@@ -20,7 +20,7 @@ def supermetrics_to_df(  # noqa: PLR0913, PLR0917
     """Extracts Cloud for Customers records as pd.DataFrame.
 
     Args:
-        query_params (dict(str, optional): Params to compose the query. 
+        query_params (dict(str, optional): Params to compose the query.
         credentials_secret (str, optional): The name of the secret storing the
             credentials.
             More info on: https://docs.prefect.io/concepts/blocks/
